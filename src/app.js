@@ -1,11 +1,14 @@
 import express from "express";
 import path from "path";
 import session from "express-session";
+import router from "./router/index.routes.js";
 
 const app = express();
 
+let currentUser = null;
+
 app.set("view engine", "ejs");
-app.set("views", path.join(process.cwd(), "src", "views", "pages"));
+app.set("views", path.join(process.cwd(), "src", "views"));
 
 app.use(express.static(path.join(process.cwd(), "public")));
 
@@ -14,18 +17,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use((req, res, next) => {
   res.locals.currentUser = currentUser;
   next();
-});
-
-app.get("/", (req, res) => {
-  res.render("home");
-});
-
-app.get("/dashboard", (req, res) => {
-  res.render("dashboard");
-});
-
-app.get("/sign-in", (req, res) => {
-  res.render("sign-in", { error: null });
 });
 
 app.post("/login", (req, res) => {
@@ -43,5 +34,7 @@ app.get("/logout", (req, res) => {
   currentUser = null;
   res.redirect("/");
 });
+
+app.use(router);
 
 export default app;

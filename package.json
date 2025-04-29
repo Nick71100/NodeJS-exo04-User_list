@@ -6,8 +6,10 @@
   "author": "Nick",
   "type": "module",
   "main": "index.js",
+  "keywords": [],
   "scripts": {
-    "dev": "nodemon src/server.js"
+    "dev": "nodemon --verbose src/server.js",
+    "start": "node src/server.js"
   },
   "devDependencies": {
     "nodemon": "^3.1.10",
