@@ -1,7 +1,7 @@
 import express from "express";
 import path from "path";
-import session from "express-session";
 import router from "./router/index.routes.js";
+import jsonfile from "jsonfile";
 
 const app = express();
 
@@ -19,15 +19,23 @@ app.use((req, res, next) => {
   next();
 });
 
-app.post("/login", (req, res) => {
-  const { userName, password } = req.body;
+app.post("/sign-in", (req, res) => {
+  const { name, password } = req.body;
+  const file = path.join(process.cwd(), "src", "data", "users.json");
 
-  if (userName === user.userName && password === user.password) {
-    currentUser = { userName };
-    res.redirect("/");
-  } else {
-    res.render("sign-in", { error: "!! Identifiants invalides !!" });
-  }
+  jsonfile.readFile(file, (err, users) => {
+    if (err) {
+      return res.status(500).send("Erreur serveur");
+    }
+    const user = users.find((u) => u.name === name && u.password === password);
+
+    if (user) {
+      currentUser = { name };
+      res.redirect("/");
+    } else {
+      res.render("login", { error: "Identifiants invalides." });
+    }
+  });
 });
 
 app.get("/logout", (req, res) => {

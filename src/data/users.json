@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "name": "Ghadeer",
+    "password": "prout",
+    "age": 31
+  },
+  {
+    "id": 2,
+    "name": "Rachida",
+    "password": "prout",
+    "age": 38
+  },
+  {
+    "id": 3,
+    "name": "Luigi",
+    "password": "prout",
+    "age": 34
+  },
+  {
+    "id": 4,
+    "name": "Nick",
+    "password": "prout",
+    "age": 37
+  },
+  {
+    "id": 5,
+    "name": "Romain",
+    "password": "prout",
+    "age": 40
+  }
+]

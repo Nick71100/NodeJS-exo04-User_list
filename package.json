@@ -8,7 +8,7 @@
   "main": "index.js",
   "keywords": [],
   "scripts": {
-    "dev": "nodemon --verbose src/server.js",
+    "dev": "nodemon src/server.js",
     "start": "node src/server.js"
   },
   "devDependencies": {

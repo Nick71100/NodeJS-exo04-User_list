@@ -1,6 +1,6 @@
 <header>
   <% if (currentUser) { %>
-  <p>Hello <%= currentUser.userName %> !</p>
+  <p>Hello <%= currentUser.name %> !</p>
   <% } else {%>
   <p>non-connecté</p>
   <% } %>
@@ -11,7 +11,7 @@
     <% if (currentUser) { %>
     <a href="/logout">Log-Out</a>
     <% } else { %>
-    <a href="/login">Log-In</a>
+    <a href="/sign-in">Sign-In</a>
     <% } %>
   </nav>
 </header>
