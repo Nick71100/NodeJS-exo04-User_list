@@ -1,6 +1,9 @@
 <main>
   <h1>This is the Sign-In Page</h1>
-  <form action="/sign-in" method="POST">
+  <form action="/authentication/sign-in" method="POST">
+    <% if (error) { %>
+    <p><%= error %></p>
+    <% } %>
     <input
       type="text"
       id="name"
