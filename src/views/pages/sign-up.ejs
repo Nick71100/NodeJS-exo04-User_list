@@ -1,3 +1,36 @@
 <main>
   <h1>This is the Sign-Up Page</h1>
+  <main>
+    <form action="/authentication/sign-up" method="post">
+      <input
+        type="text"
+        name="name"
+        id="name"
+        placeholder="Entrez un nom d'utilisateur..."
+      />
+      <input
+        type="password"
+        name="password"
+        id="password"
+        placeholder="Entrez un mot de passe..."
+      />
+      <input
+        type="number"
+        name="age"
+        id="age"
+        placeholder="Entrez votre âge..."
+      />
+      <input
+        type="text"
+        name="poste"
+        id
+        poste
+        placeholder="Entrez votre poste..."
+      />
+      <button type="submit">Sign up</button>
+    </form>
+    <% if (error) { %>
+    <p id="error"><%= error%></p>
+    <% } %>
+  </main>
 </main>

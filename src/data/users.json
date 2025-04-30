@@ -1,37 +1,44 @@
 [
-  {
-    "id": 1,
-    "name": "Ghadeer",
-    "password": "prout",
-    "age": 31,
-    "poste": "apprenant"
-  },
-  {
-    "id": 2,
-    "name": "Rachida",
-    "password": "prout",
-    "age": 38,
-    "poste": "apprenant"
-  },
-  {
-    "id": 3,
-    "name": "Luigi",
-    "password": "prout",
-    "age": 34,
-    "poste": "apprenant"
-  },
-  {
-    "id": 4,
-    "name": "Nick",
-    "password": "prout",
-    "age": 37,
-    "poste": "apprenant"
-  },
-  {
-    "id": 5,
-    "name": "Romain",
-    "password": "prout",
-    "age": 40,
-    "poste": "formateur"
-  }
+    {
+        "id": 1,
+        "name": "Ghadeer",
+        "password": "prout",
+        "age": 31,
+        "poste": "apprenant"
+    },
+    {
+        "id": 2,
+        "name": "Rachida",
+        "password": "prout",
+        "age": 38,
+        "poste": "apprenant"
+    },
+    {
+        "id": 3,
+        "name": "Luigi",
+        "password": "prout",
+        "age": 34,
+        "poste": "apprenant"
+    },
+    {
+        "id": 4,
+        "name": "Nick",
+        "password": "prout",
+        "age": 37,
+        "poste": "apprenant"
+    },
+    {
+        "id": 5,
+        "name": "Romain",
+        "password": "prout",
+        "age": 40,
+        "poste": "formateur"
+    },
+    {
+        "id": 6,
+        "name": "Simon",
+        "password": "prout",
+        "age": "30",
+        "poste": "formateur"
+    }
 ]
