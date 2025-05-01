@@ -1,6 +1,7 @@
 import { Router } from "express";
 import path from "path";
 import jsonfile from "jsonfile";
+import bcrypt from "bcrypt";
 
 const router = Router();
 const file = path.join(process.cwd(), "src", "data", "users.json");
@@ -32,21 +33,27 @@ router.get("/authentication/sign-up", (req, res) => {
 router.post("/authentication/sign-in", (req, res) => {
   const { name, password } = req.body;
   const users = jsonfile.readFileSync(file);
-  const user = users.find(
-    (user) => user.name === name && user.password === password
-  );
+  const user = users.find((user) => user.name === name);
 
-  if (user) {
+  bcrypt.compare(password, user.password, (error, same) => {
+    if (error) {
+      res.redirect("/authentication/sign-in?error=CompareError");
+      return;
+    }
+
+    if (!same) {
+      return res.status(401).render("layout/template", {
+        file: "sign-in",
+        error: "Identifiants invalides !",
+      });
+    }
     req.session.user = {
       name: user.name,
+      isLogged: true,
     };
+
     res.redirect("/");
-  } else {
-    res.status(401).render("layout/template", {
-      file: "sign-in",
-      error: "Identifiants invalides !",
-    });
-  }
+  });
 });
 
 router.post("/authentication/sign-up", (req, res) => {
@@ -61,16 +68,22 @@ router.post("/authentication/sign-up", (req, res) => {
     return;
   }
 
-  const newUser = {
-    id: users.length + 1,
-    name: name,
-    password,
-    age: age,
-    poste: poste,
-  };
+  bcrypt.hash(req.body.password, 10, (error, hash) => {
+    if (error) {
+      res.redirect("/authentication/sign-up?error=HashingError");
+      return;
+    }
 
-  users.push(newUser);
-  jsonfile.writeFileSync(file, users, { spaces: 4, EOL: "\r\n" });
+    const newUser = {
+      id: users.length + 1,
+      name: name,
+      password: hash,
+      age: age,
+      poste: poste,
+    };
+    users.push(newUser);
+    jsonfile.writeFileSync(file, users, { spaces: 4, EOL: "\r\n" });
+  });
 
   res.redirect("/authentication/sign-in");
 });
